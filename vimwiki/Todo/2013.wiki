@@ -1,0 +1,15 @@
+%title Todo list of 2013
+[[../index|Index]] - Todo list of 2013
+----
+ = Todo list of 2013 =
+ * [ ] Mid-term exam of Mathematical Analysis on April 26th.
+ * [ ] High-Order CFD method
+   * [ ] read paper named "High-order accurate, low numerical diffusion methods for aerodynamics"
+   * [ ] write code about one High-Order method
+ * [ ] Large eddy simulation
+   * [ ] read LES part of the book written by J.Blazek
+   * [ ] write code about LES
+ * [ ] Read books
+   * [ ] "Free to choose"
+----
+Last change @ 2013-04-07 23:00:54
