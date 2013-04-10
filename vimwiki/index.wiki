@@ -5,7 +5,7 @@
 ----
  = Blog =
  == vim ==
- == fortran ==
+ == [[./Blog/fortran|fortran]] ==
 ----
  = Diary =
  == 2013 ==

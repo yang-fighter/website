@@ -1,5 +1,6 @@
 %title Todo list of 2013
-[[../index|Index]] - Todo list of 2013
+----
+[[../index|Home]] - Todo list of 2013
 ----
  = Todo list of 2013 =
  * [ ] Mid-term exam of Mathematical Analysis on April 26th.
@@ -11,5 +12,6 @@
    * [ ] write code about LES
  * [ ] Read books
    * [ ] "Free to choose"
+
 ----
 Last change @ 2013-04-07 23:00:54

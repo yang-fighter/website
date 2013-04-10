@@ -1,0 +1,44 @@
+%title Tips for Debugging Run-time Failures with Intel Fortran
+----
+[[../index|Home]] - [[./fortran|Fortran]] - Tips for Debugging Run-time Failures with Intel Fortran
+----
+ = Tips for Debugging Run-time Failures with Intel Fortran =
+@ 2013-04-10 12:25:39
+----
+From: http://software.intel.com/en-us/articles/tips-for-debugging-run-time-failures-in-intel-fortran-applications
+
+Tips for Debugging Run-time Failures in Applications Built with the Intel® Fortran Compiler
+
+Your app builds successfully, but crashes at runtime. What Next? Try some useful Intel compiler diagnostic options before launching into lengthy debugger sessions.
+
+1) Build with `/traceback` (Windows*) or `–traceback` (Linux* or Mac OS* X).
+This can give a stack trace with subroutine or function names, source filenames and line numbers at the point of failure, if it is in user code, without the need to build with debug symbols. This is designed as a lightweight option that can also be left enabled for release builds. If an end user encounters a problem, the traceback can be a starting point for a bug report.
+
+2) Build with `/gen-interfaces /warn:interfaces` (Windows) or `–gen-interfaces –warn interfaces` (Linux or Mac OS X). This is able to detect at compile time many instances of argument mismatches between caller and callee, which can otherwise lead to hard-to-debug runtime failures. These options automatically create and check explicit, Fortran90 style interfaces for Fortran77 style or other code that does not already have them. There is no impact on run-time performance.
+
+3) Try building and running with `/check` (Windows) or `–check` (Linux and Mac OS X).
+This instruments your code and makes a number of valuable run-time checks, including array bounds checking, checking for uninitialized or disassociated pointers, and for some types of uninitialized local scalar variables. Bounds checking in particular is likely to make your program run slower.
+
+4) Build your program, including the main routine, with `/fpe:0` (Windows) or `–fpe0` (Linux or Mac OS X). This will cause your program to halt if it encounters a divide-by-zero, overflow or invalid floating-point exception, instead of generating a `NaN` (not-a-number) and silently continuing. If you have also specified /traceback (-traceback), you should be able to see where the floating point exception occurred. Any impact on performance is likely to be small.
+
+5) If your application fails early on with `a segmentation fault`, you might be exceeding the default maximum stack size. On Linux or Mac OS X, try setting
+`ulimit –s unlimited` (bash) or `limit stacksize unlimited` (C shell)
+On Windows, use the `/F` build option or increase the stack limits in the IDE under project properties/linker/system/ Stack Commit Size and Stack Reserve Size.
+
+6) Use the compiler provided interfaces. If you call run-time library functions, build with
+      USE IFLPORT
+If you call OpenMP run-time library functions, compile with
+      USE OMP_LIB
+If you call functions from MKL or IMSL*, USE the corresponding module(s).
+
+7) Look carefully for any error messages in your output log file. Errors from the Fortran run-time library include an error number. Additional information about such RTL errors may be found in the main compiler documentation under “List of Run-Time Error Messages”, or by searching for the error number directly.
+
+8) If you are building an application using OpenMP*, check out the advice under “Tips for Debugging OpenMP Apps” at /en-us/articles/threading-fortran-applications-for-parallel-performance-on-multi-core-systems  
+
+All the above options may be used with release (optimized) builds. Certain options are enabled by default in a debug build made through the Microsoft* Visual Studio* IDE on Windows.
+
+Additional information may be found in the main compiler documentation in the section Building Applications / Error Handling / Handling Run-Time Errors, e.g. “Understanding Run-Time Errors” and the references therein;  also in the article  /en-us/articles/determining-root-cause-of-segmentation-faults-sigsegv-or-sigbus-errors.
+
+
+9) OK, sometimes you need to do the heavy lifting. If these suggestions haven’t helped, or if they helped localize the problem but you need more information, it may be time to start interactive debugging. For Windows, see the section Building Applications / Debugging in the main compiler documentation. For Linux or Mac OS X, see the documentation for the Intel® Debugger (idb).
+----
