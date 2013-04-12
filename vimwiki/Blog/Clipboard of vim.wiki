@@ -1,0 +1,13 @@
+%title Clipboard of vim
+----
+[[../index|Home]] - [[./vim|vim]] - Clipborad of vim
+----
+ = Clipboard of vim =
+@ 2013-04-12 15:52:33
+----
+# `["x]yy` Yank [count] lines [into register x].
+# `["x]Y` Yank [count] lines [into register x] (synonym for yy).
+# `["x]p` Put the text [from register x] after the cursor [count] times.
+# `["x]P` Put the text [from register x] before the cursor [count] times.
+# Vim uses CLIPBOARD when reading and writing the `"+` register.
+----

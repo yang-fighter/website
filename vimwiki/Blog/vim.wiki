@@ -1,0 +1,7 @@
+%title vim
+----
+[[../index|Home]] - vim
+----
+ ==== [[./Clipboard of vim|Clipboard of vim]] ====
+ ==== [[./Tips for vim|Tips for vim]] ====
+----
